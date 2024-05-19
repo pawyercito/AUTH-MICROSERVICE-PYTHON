@@ -17,16 +17,3 @@ app.include_router(user_router)
 app.include_router(login_router)
 app.include_router(update_patient_information_router)
 
-# Configurar CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000"], # Ajusta esto a la URL de tu frontend
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-@app.on_event("startup")
-async def startup():
-    print("Starting up...")
-    Base.metadata.create_all(bind=engine)
